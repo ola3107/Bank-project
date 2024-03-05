@@ -1,0 +1,679 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root{
+  --bg1: #233844;
+  --bg2: #5B6A7A;
+  --body: #679AF2;
+  --brand: #9CE1DE90;
+  --brand2: #d6d246;
+  --white: #fff;
+  --font-color1: #CEF0FF; 
+}
+html{
+  scroll-behavior: smooth;
+}
+body{
+  font-family: 'Poppins', sans-serif;
+}
+
+header{
+  background: linear-gradient(to bottom, var(--bg1), var(--bg2));
+  padding: 1rem 0;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+}
+
+nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5%;
+}
+
+nav h1{
+  color: var(--brand2);
+  font-size: 1.5rem;
+  font-weight: 600;
+
+  >span{
+    color: var(--font-color1);
+  }
+}
+
+nav p{
+  color: var(--font-color1);
+  font-weight: 700;
+  font-size: 0.7rem;
+  text-align: center;
+  font-style: italic;
+}
+
+nav ul{
+  display: flex;
+  list-style: none;
+}
+
+nav ul li{
+  margin: 0 1rem;
+}
+
+nav ul li a{
+  color: var(--white);
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+nav .open-sidebar{
+  display: none;
+  font-size: 1.5rem;
+}
+
+nav ul li a:hover{
+  color: var(--font-color1);
+}
+
+ /*------- for dropwon menu---------- */
+nav ul.dropdown{
+  position: relative;
+}
+
+.dropdown:hover .dropdown-content{
+  display: block;
+}
+
+nav ul.dropdown-content{
+  position: absolute;
+  top: 65%;
+  left: 49%;
+  background: transparent;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0;
+  display: none;
+  flex-direction: column;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+nav ul.dropdown-content li{
+  margin: 0;
+  border-bottom: 1px solid var(--bg1);
+}
+
+nav ul.dropdown-content li a{
+  color: var(--font-color1);
+  font-size: 1rem;
+  font-weight: 400;
+  padding: 0.5rem 1rem;
+  display: block;
+  text-align: center;
+  transition: all 1s ease;
+}
+
+nav ul.dropdown-content li a:hover{
+  background: var(--font-color1);
+  color: var(--bg1);
+  border-radius: 5px;
+}
+
+button{
+  background: transparent;
+  color: var(--font-color1);
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--brand2);
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover{
+  background: var(--bg1);
+  color: var(--white);
+  border: none;
+}
+
+
+/* sidebars for mobile */
+.sidebar{
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 250px;
+  z-index: 999;
+  background-color: rgba(66, 76, 117, 0.226);
+  backdrop-filter: blur(5px);
+  box-shadow: -10px 0 20px rgba(0,0,0,0.2);
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 20px; 
+  display: none;
+}
+
+.sidebar li{
+  width: 100%;
+  margin-block: 10px;
+}
+
+.sidebar div.close-sidebar{
+  font-size: 1.5rem;
+}
+
+.sidebar li a{
+  width: 100%;
+  color: var(--white);
+}
+
+.sidebar .btn{
+  margin-top: 20px;
+}
+
+/* hero-section */
+
+#hero{
+  background: linear-gradient(150deg,#374171ba, rgba(105, 116, 169, 0.2)), url(./assets/businessman-finger-touch-graph-lines-bars-numbers-office-man-hud-virtual-screen-stock-market-changes-business-217018808.jpg);
+  background-position: center;
+  background-size: cover;
+ /*  height: 100vh; */
+  padding: 5rem 0;
+  color: var(--font-color1);
+  text-align: center;
+}
+
+.hero-body{
+  margin-top: 150px;
+  margin-inline: 5%;
+}
+
+.hero-body h1{
+  font-size: 3rem;
+}
+
+.hero-body h2{
+  margin-top: 30px;
+  font-size: 2.5rem;
+}
+
+.hero-body p{
+  font-size: 1.2rem;
+  line-height: 1.5;
+  font-style:oblique;
+}
+
+div.hero-button{
+  margin-top: 50px;
+  display: flex;
+  max-width: 450px;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin: 30px auto;
+  
+}
+
+.hero-button button{
+padding: 1rem 1.8rem;
+font-size: 1.1rem;
+margin-top: 10px;
+}
+
+/* about-section */
+
+#about{
+  background-color: var(--bg1);
+  padding-block: 70px;
+  padding-inline: 5%;
+  background: linear-gradient(45deg, var(--bg2), #233844);
+  
+}
+
+.about-head{
+  text-align: center;
+
+}
+
+.about-head h1{
+  font-size: 2rem;
+  color: var(--brand);
+}
+
+.about-body{
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin-block: 50px;
+
+}
+
+.about-body img{
+  width: 450px;
+  min-width: 200px;
+  height: 300px;
+}
+
+.about-info{
+  max-width: 500px;
+  text-align: center;
+}
+
+.about-body .about-info h1{
+  color: var(--font-color1);
+  margin-top: 40px;
+}
+
+.about-body .about-info p{
+  margin-block: 20px;
+  line-height: 1.5;
+  font-style: italic;
+  color: var(--white);
+}
+
+.about-body .about-info a{
+  text-decoration: none;
+  color: var(--font-color1);
+  font-weight: 600;
+  text-transform: uppercase;
+  display: inline-flex;
+  
+}
+
+.about-body .about-info a:hover{
+  color: var(--bg2);
+}
+
+.about-body .about-info a .icon{
+  transition: all 0.5s ease;
+}
+
+.about-body .about-info a:hover .icon{
+  transform: translateX(8px);
+}
+
+div.about-button{
+  display: flex;
+  max-width: 450px;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin: 80px auto 30px auto;
+}
+
+.about-button button{
+padding: 1rem 1.8rem;
+font-size: 1.1rem;
+margin: 10px;
+}
+
+/* features-section */
+#features{
+  padding-block: 70px;
+  padding-inline: 5%;
+  background: linear-gradient(45deg, var(--bg2), #233844);
+}
+
+.Features-head{
+  max-width: 600px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.Features-head h1{
+  font-size: 2rem;
+  color: var(--brand);
+}
+
+.Features-head h3{
+  color: var(--brand2);
+  margin-block: 10px;
+  font-size: 25px;
+}
+
+.Features-head p{
+  color: var(--white);
+  margin-block: 20px;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+.Features-body{
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin-block: 50px;
+}
+
+.Features-body .Features-body-item{
+  max-width: 300px;
+  text-align: center;
+  margin-block: 20px;
+}
+
+.Features-body .Features-body-item i{
+ font-size: 3rem;
+ color: var(--brand2);
+}
+
+.Features-body .Features-body-item h3{
+  color: var(--font-color1);
+  margin-top: 15px;
+}
+
+.Features-body .Features-body-item p{
+  color: var(--white);
+  margin-block: 15px;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+/* contact */
+#contact{
+  padding-block: 70px;
+  padding-inline: 5%;
+  background: linear-gradient(150deg,#374171ba, rgba(105, 116, 169, 0.2)), url(./assets/d-graph-lines-hong-kong-blurred-background-your-business-project-d-graph-lines-hong-kong-blurred-background-your-174970115.jpg);
+  background-position: center;
+  background-size: cover;
+}
+
+#contact #contact-form{
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.634);
+  border-radius: 10px;
+}
+
+#contact #contact-form h2{
+  color: var(--font-color1);
+  margin-block: 20px;
+}
+
+#contact #contact-form input{
+  text-align: center;
+  width: 100%;
+  height: 2rem;
+  margin-block: 10px;
+  border: none;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.132);
+  color: var(--font-color1);
+}
+
+#contact #contact-form textarea{
+  width: 100%;
+  height: 100px;
+  margin-block: 10px;
+  border: none;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--font-color1);
+}
+
+#contact #contact-form button{
+  margin-top: 10px;
+  padding: 0.8rem 1.8rem;
+  font-size: 1.1rem;
+  width: 80%;
+}
+
+/* footer */
+footer{
+  background: linear-gradient(45deg, var(--bg1), rgb(3, 7, 29));
+  background-position: center;
+  background-size: cover;
+  padding-inline: 5%;
+  padding-block-start: 50px;
+  color: var(--font-color1);
+}
+
+footer .footer__container{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+footer .footer__container .footer__content{
+  max-width: 300px;
+  margin-top: 20px;
+}
+
+footer .footer__container .footer__content:last-child{
+  border: none;
+}
+
+
+footer .footer__container .footer__content h1{
+  color: var(--brand2);
+  margin-block: 10px;
+}
+
+footer .footer__container .footer__content h3{
+  color: var(--brand);
+  margin-block: 10px;
+  font-size: 1.3rem;
+}
+
+footer .footer__container .footer__content p{
+  color: var(--white);
+  margin-block: 10px;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+footer .footer__container .footer__content .bank-icon{
+  font-size: 4rem;
+  
+}
+
+footer .footer__container .footer__content ul li{
+  list-style: none;
+  margin-block: 10px;
+  font-size: 0.9rem;
+}
+
+footer .footer__container .footer__content ul li a{
+  color: var(--font-color1);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+footer .footer__container .footer__content ul li a:hover{
+  color: var(--brand2);
+}
+
+footer .footer__container .footer__content form{
+  margin-block: 20px;
+}
+
+footer .footer__container .footer__content form input{
+  height: 2rem;
+  width: 70%;
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--font-color1);
+}
+
+footer .footer__container .footer__content form button{
+ font-size: 0.7rem;
+}
+
+footer .footer__container .footer__content .icons{
+  text-align: center;
+}
+
+footer .footer__container .footer__content .icons a{
+  color: var(--brand2);
+  font-size: 1.5rem;
+  margin-inline: 5px;
+  text-decoration: none;
+  transition: all 0.5s ease;
+}
+
+footer .footer__container .footer__content .icons a:hover{
+  padding: 5px 10px;
+  border: 1px solid var(--brand2);
+  border-radius: 5px;
+}
+
+footer .footer__bottom{
+  text-align: center;
+  padding-block: 1rem;
+  margin-top: 1rem;
+}
+
+footer .footer__bottom p{
+  font-style: italic;
+  color: var(--brand);
+}
+
+footer .footer__bottom i{
+  color: var(--body);
+}
+
+footer .footer__bottom a{
+  color: var(--font-color1);
+  transition: all 0.5s ease;
+}
+
+footer .footer__bottom a:hover{
+  color: var(--brand2);
+}
+
+
+/* product.html */
+#product{
+  padding-block: 75px;
+  padding-inline: 5%;
+  background: linear-gradient(45deg, var(--bg2), #233844);
+}
+
+.product-head{
+  max-width: 600px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.product-head h1{
+  font-size: 2rem;
+  color: var(--brand);
+}
+
+.product-head h3{
+  color: var(--brand2);
+  margin-block: 5px;
+  font-size: 22px;
+}
+
+.product-body{
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  text-align: center;
+  padding-top: 20px;
+}
+
+.product-body .product{
+  max-width: 300px;
+  margin-block: 20px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.28);
+  border-radius: 10px;
+}
+
+.product-body .product h3{
+  color: var(--font-color1);
+  margin-block: 10px;
+}
+
+.product-body .product p{
+  color: var(--white);
+  margin-block: 10px;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+.product-body .product a{
+  text-decoration: none;
+  color: var(--font-color1);
+  font-weight: 600;
+  text-transform: uppercase;
+  display: inline-flex;
+}
+
+form{
+  padding-top: 70px;
+}
+
+.bank-account-info {
+  background-color: rgba(95, 158, 160, 0.178);
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+  display: none;
+  
+}
+
+.welcome-alert{
+  display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen  and (max-width: 893px) {
+  nav ul, nav div.desktop{
+    display: none;
+  }
+
+  nav .open-sidebar{
+    display: block;
+  }
+}
+
+
+

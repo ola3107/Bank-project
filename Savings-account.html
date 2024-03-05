@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <header id="head"></header>
+
+    <div class="create-account">
+        <form action="" id="create-account">
+            <h1>Create New Account</h1>
+            <input type="text" name="Name" id="Name" placeholder="FullName">
+           <!--  <input type="password" name="password" id="password" placeholder="Password">
+            <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirm Password"> -->
+            <input type="text" id="deposit" placeholder="Initial-Deposit ₦">
+            <select name="type" id="type">
+                <option value="">Select Account Type</option>
+                <option value="Savings">Savings</option>
+                <option value="Current">Current</option>
+            </select>
+            <button class="btn-submit">Create Account</button>
+        </form>
+    </div>
+
+    <div class="welcome-alert">
+        <p>You have successfully create an account with bankfree. <a href="">click here</a> to make transaction for free</p>
+    </div>
+
+    <div class="bank-account-display">
+        <div class="bank-account">
+            <h1>bank accounts</h1>
+            <ul class="account-list">
+        
+            </ul>
+        </div>
+        
+        
+        <div class="bank-account-info">
+            <h1>Bank Account Information</h1>
+            <div class="account-details">
+                <p>Account Number: <span id="account-number"></span></p>
+                <p>Account Name: <span id="account-name"></span></p>
+                <p>Account Type: <span id="account-type"></span></p>
+                <p>Account Balance: <span id="account-balance"></span></p>
+
+                <div id="button"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="deposit">
+        <form action="" id="deposit-form">
+            <h1>Deposit</h1>
+            <input type="text" id="account-number" placeholder="Account Number">
+            <input type="text" id="amount" placeholder="Amount ₦">
+            <button class="btn-submit">Deposit</button>
+        </form>
+    </div>
+
+    <div class="withdraw">
+        <form action="" id="withdraw-form">
+            <h1>withdraw</h1>
+            <input type="text" id="withdraw-account-number" placeholder="Account Number">
+            <input type="text" id="withdraw-amount" placeholder="Amount ₦">
+            <button class="btn-submit">withdraw</button>
+        </form>
+    </div>
+
+    <div class="transfer">
+        <form action="" id="transfer-form">
+            <h1>Transfer</h1>
+            <input type="text" id="sender-account-number" placeholder="Account Number">
+            <input type="text" id="reciever-account-number" placeholder="Recipient Account number">
+            <input type="text" id="transfer-amount" placeholder="Amount ₦">
+            <button class="btn-submit">Transfer</button>
+        </form>
+    </div>
+    
+
+    <footer id="footer"></footer>
+
+
+    <script type="module" src="/main.js"></script>
+</body>
+</html>
