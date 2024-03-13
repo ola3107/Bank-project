@@ -548,7 +548,6 @@ footer .footer__bottom a:hover{
   color: var(--brand2);
 }
 
-
 /* product.html */
 #product{
   padding-block: 75px;
@@ -609,6 +608,38 @@ footer .footer__bottom a:hover{
   display: inline-flex;
 }
 
+/* ------loan.html------ */
+main{
+  height: 500px;
+  padding-block: 70px;
+  padding-inline: 5%;
+  background: linear-gradient(150deg,#374171ba, rgba(105, 116, 169, 0.2)), url(./assets/businesswoman-pointing-pen-tablet-graph-lines-showing-concept-business-growth-financial-stability-investment-risk-226487886.jpg);
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.title{
+  min-width: 200px;
+  display: flex;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: var(--font-color1);
+}
+
+
+
+
+
+
+
+
+
+
+
 form{
   padding-top: 70px;
 }
@@ -625,6 +656,8 @@ form{
 .welcome-alert{
   display: none;
 }
+
+
 
 
 

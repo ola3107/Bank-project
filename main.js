@@ -1,6 +1,7 @@
 import './style.css'
 import { showSidebar, hideSidebar } from './menu.js'
-import { bank, Account, displayAccountDetails, showAccount, attachAccountListeners } from './Account.js'
+import{bank, Account, deposit, withdraw, transfer} from './Account.js'
+
 
 /* -------header------- */
 document.querySelector("#head").innerHTML = `
@@ -16,7 +17,7 @@ document.querySelector("#head").innerHTML = `
       <li class="dropdown">
         <a href="#" class="dropbtn">Product <i class="ri-arrow-down-s-fill"></i></a>
         <ul class="dropdown-content">
-          <li><a href="/Product/loan">Loan</a></li>
+          <li><a href="/loan.html">Loan</a></li>
           <li><a href="/Savings-account.html">Saving & current</a></li>
           <li><a href="/Product/credit">Credit-card</a></li>
         </ul>
@@ -94,99 +95,73 @@ document.querySelector("#footer").innerHTML = `
   <p>&copy; 2024 Bank free. All rights reserved</p>
 </div>
 `
+
 document.addEventListener('DOMContentLoaded', () => {
-  
-  const form = document.querySelector('#create-account');
-  attachAccountListeners();
+  const form = document.querySelector('#create-account')
   form.addEventListener('submit', (e) => {
-    e.preventDefault();
+    e.preventDefault()
     const name = document.querySelector('#Name').value;
     const balance = document.querySelector('#deposit').value;
     const type = document.querySelector('#type').value;
 
-    document.querySelector('#Name').value = '';
-    document.querySelector('#deposit').value = '';
-    document.querySelector('#type').value = '';
-    
-
     const account = new Account(name, balance, type);
-    bank.addAccount(account);
-    displayAccountDetails(bank);
-    document.querySelector('.welcome-alert').style.display = 'block';
-    setTimeout(() => {
-      document.querySelector('.welcome-alert').style.display = 'none';
-    }, 5000);
-  });
-
-  const deposit = document.querySelector('#deposit-form');
-  deposit.addEventListener('submit', (e) => {
+    bank.addAccounts(account);
+    console.log(bank);
+  })
+  
+  const depositMoney = document.querySelector('#deposit-form');
+  depositMoney.addEventListener('submit', (e) => {
     e.preventDefault();
-    const id = parseInt(document.querySelector('#account-number').value);
-    const amount = parseInt(document.querySelector('#amount').value);
+    const id = document.querySelector('#accountNumber').value;
+    const amount = document.querySelector('#amount').value;
+    deposit(id, amount);
+    /* const account = bank.findAccount(id);
+    account.deposit(amount);
+    console.log(account); */
+  })
 
-    document.querySelector('#account-number').value = '';
-    document.querySelector('#amount').value = '';
-
-    const account = bank.findAccount(id);
-    if(account !== false) {
-      account.depositMoney(amount);
-      console.log(account);
-    } else {
-      console.log('Account not found for id: ', id);
-    }
-  
-  });
-
-  const withdraw = document.querySelector('#withdraw-form');
-  withdraw.addEventListener('submit', (e) => {
+  const withdrawMoney = document.querySelector('#withdraw-form');
+  withdrawMoney.addEventListener('submit', (e) => {
     e.preventDefault();
-    const id = parseInt(document.querySelector('#withdraw-account-number').value);
-    const amount = parseInt(document.querySelector('#withdraw-amount').value);
-   
-    document.querySelector('#withdraw-account-number').value = '';
-    document.querySelector('#withdraw-amount').value = '';
+    const id = document.querySelector('#withdraw-account-number').value;
+    const amount = document.querySelector('#withdraw-amount').value;
+    withdraw(id, amount);
+    /* const account = bank.findAccount(id);
+    account.withdraw(amount);
+    console.log(account); */
+  })
 
-   const account = bank.findAccount(id);
-   if(account) {
-     account.withdrawMoney(amount);
-     console.log(account);
-   } else {
-     console.log('Account not found for id: ', id);
-   }
-  
-  });
-
-  const transfer = document.querySelector('#transfer-form');
-  transfer.addEventListener('submit', (e) => {
+  const transferMoney = document.querySelector('#transfer-form');
+  transferMoney.addEventListener('submit', (e) => {
     e.preventDefault();
-    const id = parseInt(document.querySelector('#sender-account-number').value);
-    const id2 = parseInt(document.querySelector('#reciever-account-number').value);
-    const amount = parseInt(document.querySelector('#transfer-amount').value);
-   
-    document.querySelector('#sender-account-number').value = '';
-    document.querySelector('#reciever-account-number').value = '';
-    document.querySelector('#transfer-amount').value = '';
+    const id1 = document.querySelector('#sender-account-number').value;
+    const id2 = document.querySelector('#reciever-account-number').value;
+    const amount = document.querySelector('#transfer-amount').value;
+    transfer(id1, id2, amount);
+    /* const account1 = bank.findAccount(id1);
+    const account2 = bank.findAccount(id2);
+    account1.withdraw(amount);
+    account2.deposit(amount);
 
-   const sender = bank.findAccount(id);
-   const reciever = bank.findAccount(id2);
-   if(sender && reciever) {
-     sender.withdrawMoney(amount);
-     reciever.depositMoney(amount);
-     console.log(sender);
-     console.log(reciever);
-   } else {
-     console.log('Account not found for id: ', id);
-   }
-  
-  });
-
-  
+    console.log(account1)
+    console.log(account2) */
+    
+  })
 
 
 });
 
+/* let account = new Account('Olasunkanmi', 1000, 'savings');
+bank.addAccounts(account);
+
+let id = 9876543212
 
 
 
+let account2 = bank.findAccount(id);
+account2.deposit(6000);
+console.log(account2);
 
+account2.withdraw(2000);
+console.log(account2); */
 

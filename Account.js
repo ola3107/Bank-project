@@ -1,117 +1,100 @@
-/* create account */
-function Bankaccount() {
-    this.account = [];
-    this.currentId = 9023432031;
+// for Bankaccount
+function BankAccount() {
+    this.accounts = {};
+    this.currentId = 9876543211 ;
 }
 
-Bankaccount.prototype.assignId = function() {
+BankAccount.prototype.assignId = function () {
     this.currentId += 1;
     return this.currentId;
-}
+};
 
-Bankaccount.prototype.addAccount = function(account) {
-    account.id = this.assignId()
-    this.account.push(account);
-}
+BankAccount.prototype.addAccounts = function (account) {
+    account.id = this.assignId();
+    this.accounts[account.id] = account;
+};
 
-Bankaccount.prototype.findAccount = function(id) {
-    for (let i = 0; i < this.account.length; i++) {
-        if (this.account[i]) {
-            if (this.account[i] && this.account[i].id == id) {
-                return this.account[i];
-            }
-        }
+
+BankAccount.prototype.findAccount = function (id) {
+    if (this.accounts[id] !== undefined) {
+        return this.accounts[id];
     }
     return false;
-}
+};
 
-Bankaccount.prototype.deleteAccount = function(id) {
-    for (let i = 0; i < this.account.length; i++) {
-        if (this.account[i]) {
-            if (this.account[i].id == id) {
-                delete this.account[i];
-                return true;
-            }
-        }
+
+BankAccount.prototype.deleteAccount = function (id) {
+    if (this.accounts[id] === undefined) {
+        return false;
     }
-    return false;
+    delete this.accounts[id];
+    return true;
+};
+
+export let bank = new BankAccount();
+
+export function deposit(accountid, amount) {
+  const account = bank.findAccount(accountid);
+  account.deposit(amount);
+  console.log(account)
+}
+
+export function withdraw(accountid, amount) {
+  const account = bank.findAccount(accountid);
+  account.withdraw(amount);
+  console.log(account)
+}
+
+export function transfer(senderid, recieverid, amount) {
+  const account1 = bank.findAccount(senderid);
+  const account2 = bank.findAccount(recieverid);
+  account1.withdraw(amount);
+  account2.deposit(amount);
+
+  console.log(account1)
+  console.log(account2)
+
 }
 
 
 
 
-/* account */
-function Account(name, balance, type) {
+
+
+
+
+
+
+
+
+
+// create account class
+export class Account {
+  constructor(name, balance, type) {
     this.name = name;
     this.balance = balance;
     this.type = type;
-}
+  }
 
-Account.prototype.depositMoney = function(amount) {
-    this.balance = parseInt(amount);
-}
+  deposit(amount) {
+    let initial = parseInt(this.balance);
+    let deposit = parseInt(amount);
+    this.balance = deposit + initial;
+    return this.balance
+  }
 
-Account.prototype.withdrawMoney = function(amount) {
-    this.balance -= +(amount);
-}
+  withdraw(amount) {
+    let initial = parseInt(this.balance);
+    let withdrawal = parseInt(amount);
+    this.balance = initial - withdrawal;
 
-
-//user interface logic
-
-
-function displayAccountDetails(bankToDisplay) {
-    let accountList = document.querySelector(".account-list");
-    let htmlForAccountInfo = "";
-    Object.keys(bankToDisplay.account).forEach(function(key) {
-        let accountUser = bankToDisplay.findAccount(key);
-        htmlForAccountInfo += "<li id=" + accountUser.id + ">" + accountUser.name + "</li>";
-    });
-    accountList.innerHTML = htmlForAccountInfo;
-}
-
-let bank = new Bankaccount();
-
-function showAccount(accountId) {
-    const account = bank.findAccount(accountId);
-   // document.querySelector(".bank-account-info").computedStyleMap.display = "block";
-    let element = document.querySelector(".bank-account-info");
-    element.style.display = "block";
-    document.getElementById("account-name").innerHTML = account.name;
-    document.getElementById("account-number").innerHTML = account.id;
-    document.getElementById("account-balance").innerHTML = account.balance;
-    document.getElementById("account-type").innerHTML = account.type;
-
-   
+    if (amount > this.balance) {
+      return "Insufficient funds";
+    }
     
-    let buttons = document.querySelector("#button");
-   /*  buttons.createElement(button)
-    button.
-    
-    buttons.append("<button class='deleteButton' id=" + account.id + ">Delete</button>"); */
-}
-
-function attachAccountListeners() {
-    document.querySelector("ul.account-list").addEventListener("click", function() {
-        showAccount(this.id);
-    });
-
-    document.querySelector(".bank-account-info").addEventListener("click", function() {
-        bank.deleteAccount(this.id);
-        document.querySelector(".bank-account-info").style.display = "none";
-        displayAccountDetails(bank);
-    });
+  }
 }
 
 
 
 
-
-
-
-
-
-
-
-
-
-export { bank, Account, displayAccountDetails, showAccount, attachAccountListeners};
