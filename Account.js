@@ -33,6 +33,54 @@ BankAccount.prototype.deleteAccount = function (id) {
 
 export let bank = new BankAccount();
 
+export function displayAccountDetails(bankToDisplay) {
+    let accountList = document.querySelector("ul#accountList");
+    let htmlForAccountInfo = "";
+    Object.keys(bankToDisplay.accounts).forEach(function (key) {
+        const account = bankToDisplay.findAccount(key);
+        htmlForAccountInfo += "<li id='" + account.id + "'>" + account.name + "</li>";
+    });
+    accountList.innerHTML = htmlForAccountInfo;
+}
+
+export function showAccount(accountId) {
+  const account = bank.findAccount(accountId);
+  let detail = document.querySelector('.bank-account-info')
+  detail.style.display = "block";
+  document.querySelector('#account-name').innerHTML = account.name
+  document.querySelector('#account-number').innerHTML = account.id
+  document.querySelector('#account-type').innerHTML = account.type
+  document.querySelector('#account-balance').innerHTML = account.balance
+  
+  let buttons = document.getElementById("button");
+    
+  buttons.innerHTML = "";
+  let button = document.createElement("button");
+  button.className = "deleteButton";
+  button.id = account.id;
+  button.textContent = "Delete";
+
+  buttons.appendChild(button);
+
+}
+
+export function attachAccountListeners() {
+  let accountsList = document.getElementById("accountList");
+  accountsList.addEventListener("click", function(event) {
+    showAccount(event.target.id);
+  });
+
+  let buttons = document.getElementById("button");
+  buttons.addEventListener("click", function(event) {
+    bank.deleteAccount(event.target.id);
+    displayAccountDetails(bank);
+    let detail = document.querySelector('.bank-account-info')
+    detail.style.display = "none";
+  });
+}
+
+
+
 export function deposit(accountid, amount) {
   const account = bank.findAccount(accountid);
   account.deposit(amount);

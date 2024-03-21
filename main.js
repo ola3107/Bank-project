@@ -1,6 +1,6 @@
 import './style.css'
 import { showSidebar, hideSidebar } from './menu.js'
-import{bank, Account, deposit, withdraw, transfer} from './Account.js'
+import{bank, Account, deposit, withdraw, transfer, displayAccountDetails, attachAccountListeners} from './Account.js'
 
 
 /* -------header------- */
@@ -97,6 +97,8 @@ document.querySelector("#footer").innerHTML = `
 `
 
 document.addEventListener('DOMContentLoaded', () => {
+  attachAccountListeners();
+
   const form = document.querySelector('#create-account')
   form.addEventListener('submit', (e) => {
     e.preventDefault()
@@ -106,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const account = new Account(name, balance, type);
     bank.addAccounts(account);
-    console.log(bank);
+    displayAccountDetails(bank);
   })
   
   const depositMoney = document.querySelector('#deposit-form');
@@ -115,6 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const id = document.querySelector('#accountNumber').value;
     const amount = document.querySelector('#amount').value;
     deposit(id, amount);
+    console.log(amount)
     /* const account = bank.findAccount(id);
     account.deposit(amount);
     console.log(account); */
@@ -154,13 +157,22 @@ document.addEventListener('DOMContentLoaded', () => {
 /* let account = new Account('Olasunkanmi', 1000, 'savings');
 bank.addAccounts(account);
 
+let account1 = new Account('deji', 1000, 'savings');
+
+let account4 = new Account('dayo', 1000, 'savings');
+bank.addAccounts(account4);
+
+
 let id = 9876543212
+let id2 = 9876543213
 
 
 
 let account2 = bank.findAccount(id);
+
 account2.deposit(6000);
 console.log(account2);
+console.log(account1);
 
 account2.withdraw(2000);
 console.log(account2); */
