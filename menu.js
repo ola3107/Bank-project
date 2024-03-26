@@ -8,7 +8,7 @@ export function hideSidebar() {
     sidebar.style.display = 'none'
 }
 
-function subscribe(){
+/* function subscribe(){
     const buttonElement = document.querySelector('.js-subscribe-button'); 
 
     if(buttonElement.innerText === 'subscribe'){
@@ -19,6 +19,6 @@ function subscribe(){
         buttonElement.innerHTML = 'subscribe';
         buttonElement.classList.remove('is-subscribed');
     }
-}
+} */
 
 

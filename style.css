@@ -630,32 +630,192 @@ main{
   color: var(--font-color1);
 }
 
-
-
-
-
-
-
-
-
-
-
-form{
-  padding-top: 70px;
+/* savings-account */
+section#account-main{
+  padding-block: 70px;
+  padding-inline: 5%;
+  background: linear-gradient(45deg, var(--bg2), #233844);
 }
 
-.bank-account-info {
-  background-color: rgba(95, 158, 160, 0.178);
+div.create{
+  margin-block: 20px;
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+div.create-account{
+  margin-top: 20px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.28);
   border-radius: 10px;
-  padding: 30px;
-  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
-  display: none;
+}
+
+div.create-account h1{
+  color: var(--font-color1);
+  margin-block: 15px;
+}
+
+div.create-account input, select{
+  width: 90%;
+  margin-block: 10px;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  text-align: center;
   
 }
 
-.welcome-alert{
+div.create-account button{
+  width: 50%;
+}
+
+div.welcome-alert{
+  margin-top: 20px;
+  border-radius: 10px;
+  background-color: rgba(66, 76, 117, 0.226);
+  backdrop-filter: blur(5px);
+  box-shadow: -10px 0 20px rgba(0,0,0,0.2);
+  padding: 30px 30px;
+  display: none;
+
+  >p{
+    font-size: 20px;
+    color: var(--font-color1);
+
+    >a{
+      color: var(--brand2);
+    }
+  }
+}
+
+div.bank-account-display{
+  max-width: 700px;
+  margin: 10px auto;
+  margin-top: 20px;
+  padding: 30px 10px;
+  background: rgba(0, 0, 0, 0.28);
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+div.Bank-Accounts{
+  max-width: 400px;
+
+  >h1{
+    color: var(--font-color1);
+    margin-block: 15px;
+  }
+
+  ul li{
+    list-style: none;
+    font-size: 18px;
+    font-weight: 600;
+    margin-block: 10px;
+    color: var(--white);
+    text-align: center;
+  }
+}
+
+div.bank-account-info{
   display: none;
 }
+
+div.bank-account-info h1{
+  color: var(--font-color1);
+  margin-block: 15px;
+}
+
+div.bank-account-info p{
+  color: var(--white);
+  margin-block: 10px;
+  font-style: italic;
+}
+
+section.transaction{
+  margin-top: 25px;
+  padding-block: 30px;
+  padding-inline: 5%;
+  background: linear-gradient(45deg, var(--bg2), #233844);
+  text-align: center;
+}
+
+section.transaction h1{
+  color: var(--brand2);
+  margin-block: 10px;
+  font-size: 32px;
+}
+
+section.transaction div{
+  margin: 20px auto;
+}
+
+section.transaction div form{
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.28);
+  border-radius: 10px;
+
+  >h1{
+    color: var(--font-color1);
+    font-size: 25px;
+  }
+}
+
+section.transaction div form input{
+  width: 90%;
+  margin-block: 10px;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+section.transaction div form button{
+  width: 50%;
+}
+
+div.withdraw, div.transfer{
+  display: none;
+}
+
+div.success-alert, div.error-alert{
+  margin-top: 20px;
+  border-radius: 10px;
+  background-color: rgba(66, 76, 117, 0.226);
+  backdrop-filter: blur(5px);
+  box-shadow: -10px 0 20px rgba(0,0,0,0.2);
+  padding: 30px 30px;
+  display: none;
+
+  >p{
+    font-size: 20px;
+    color: var(--font-color1);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

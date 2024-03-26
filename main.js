@@ -1,7 +1,14 @@
-import './style.css'
-import { showSidebar, hideSidebar } from './menu.js'
-import{bank, Account, deposit, withdraw, transfer, displayAccountDetails, attachAccountListeners} from './Account.js'
-
+import "./style.css";
+import { showSidebar, hideSidebar } from "./menu.js";
+import {
+  bank,
+  Account,
+  deposit,
+  withdraw,
+  transfer,
+  displayAccountDetails,
+  attachAccountListeners,
+} from "./Account.js";
 
 /* -------header------- */
 document.querySelector("#head").innerHTML = `
@@ -44,9 +51,9 @@ document.querySelector("#head").innerHTML = `
       </div>
     </ul>
   </nav>
-`
-head.querySelector('.open-sidebar').addEventListener('click', showSidebar)
-head.querySelector('.sidebar').addEventListener('click', hideSidebar)
+`;
+head.querySelector(".open-sidebar").addEventListener("click", showSidebar);
+head.querySelector(".sidebar").addEventListener("click", hideSidebar);
 /* --------footer-------- */
 document.querySelector("#footer").innerHTML = `
 <div class="footer__container">
@@ -94,52 +101,73 @@ document.querySelector("#footer").innerHTML = `
   <p>Design with <i class="ri-service-fill"></i> by <a href=""> Olasunkanmi</a></p>
   <p>&copy; 2024 Bank free. All rights reserved</p>
 </div>
-`
+`;
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   attachAccountListeners();
 
-  const form = document.querySelector('#create-account')
-  form.addEventListener('submit', (e) => {
-    e.preventDefault()
-    const name = document.querySelector('#Name').value;
-    const balance = document.querySelector('#deposit').value;
-    const type = document.querySelector('#type').value;
+  const form = document.querySelector("#create-account");
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const name = document.querySelector("#Name").value;
+    const balance = document.querySelector("#deposit").value;
+    const type = document.querySelector("#type").value;
+
+    document.querySelector("#Name").value = "";
+    document.querySelector("#deposit").value = "";
+    document.querySelector("#type").value = "";
 
     const account = new Account(name, balance, type);
     bank.addAccounts(account);
     displayAccountDetails(bank);
-  })
-  
-  const depositMoney = document.querySelector('#deposit-form');
-  depositMoney.addEventListener('submit', (e) => {
+    let welcome = document.querySelector(".welcome-alert");
+    welcome.style.display = "block";
+    setTimeout(function () {
+      welcome.style.display = "none";
+    }, 5000);
+  });
+
+  const depositMoney = document.querySelector("#deposit-form");
+  depositMoney.addEventListener("submit", (e) => {
     e.preventDefault();
-    const id = document.querySelector('#accountNumber').value;
-    const amount = document.querySelector('#amount').value;
+    const id = document.querySelector("#accountNumber").value;
+    const amount = document.querySelector("#amount").value;
+
+    document.querySelector('#accountNumber').value = ''
+    document.querySelector('#amount').value = ''
+
     deposit(id, amount);
-    console.log(amount)
+    console.log(amount);
     /* const account = bank.findAccount(id);
     account.deposit(amount);
     console.log(account); */
-  })
+  });
 
-  const withdrawMoney = document.querySelector('#withdraw-form');
-  withdrawMoney.addEventListener('submit', (e) => {
+  const withdrawMoney = document.querySelector("#withdraw-form");
+  withdrawMoney.addEventListener("submit", (e) => {
     e.preventDefault();
-    const id = document.querySelector('#withdraw-account-number').value;
-    const amount = document.querySelector('#withdraw-amount').value;
+    const id = document.querySelector("#withdraw-account-number").value;
+    const amount = document.querySelector("#withdraw-amount").value;
+
+    document.querySelector('#withdraw-account-number').value = ''
+    document.querySelector('#withdraw-amount').value = ''
     withdraw(id, amount);
     /* const account = bank.findAccount(id);
     account.withdraw(amount);
     console.log(account); */
-  })
+  });
 
-  const transferMoney = document.querySelector('#transfer-form');
-  transferMoney.addEventListener('submit', (e) => {
+  const transferMoney = document.querySelector("#transfer-form");
+  transferMoney.addEventListener("submit", (e) => {
     e.preventDefault();
-    const id1 = document.querySelector('#sender-account-number').value;
-    const id2 = document.querySelector('#reciever-account-number').value;
-    const amount = document.querySelector('#transfer-amount').value;
+    const id1 = document.querySelector("#sender-account-number").value;
+    const id2 = document.querySelector("#reciever-account-number").value;
+    const amount = document.querySelector("#transfer-amount").value;
+
+    document.querySelector("#sender-account-number").value = ''
+    document.querySelector("#reciever-account-number").value = ''
+    document.querySelector("#transfer-amount").value = ''
+
     transfer(id1, id2, amount);
     /* const account1 = bank.findAccount(id1);
     const account2 = bank.findAccount(id2);
@@ -148,10 +176,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     console.log(account1)
     console.log(account2) */
-    
-  })
+  });
 
+  document.getElementById('deposit-btn').addEventListener('click', function() {
+    document.querySelector('.deposit').style.display = 'block'
+    document.querySelector('.withdraw').style.display = 'none'
+    document.querySelector('.transfer').style.display = 'none'
+  });
 
+  document.getElementById('withdraw-btn').addEventListener('click', function() {
+    document.querySelector('.withdraw').style.display = 'block'
+    document.querySelector('.deposit').style.display = 'none'
+    document.querySelector('.transfer').style.display = 'none'
+  });
+
+  document.getElementById('transfer-btn').addEventListener('click', function() {
+    document.querySelector('.transfer').style.display = 'block'
+    document.querySelector('.deposit').style.display = 'none'
+    document.querySelector('.withdraw').style.display = 'none'
+  });
+  
 });
 
 /* let account = new Account('Olasunkanmi', 1000, 'savings');
@@ -176,4 +220,3 @@ console.log(account1);
 
 account2.withdraw(2000);
 console.log(account2); */
-

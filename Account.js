@@ -38,16 +38,23 @@ export function displayAccountDetails(bankToDisplay) {
     let htmlForAccountInfo = "";
     Object.keys(bankToDisplay.accounts).forEach(function (key) {
         const account = bankToDisplay.findAccount(key);
-        htmlForAccountInfo += "<li id='" + account.id + "'>" + account.name + "</li>";
+        htmlForAccountInfo += "<li id='" + account.id + "'>" + capitalizeFirstLetter(account.name) + "</li>";
     });
     accountList.innerHTML = htmlForAccountInfo;
+}
+
+function capitalizeFirstLetter(string) {
+   return string.split(' ').map(function (word) {
+        return word.charAt(0).toUpperCase() + word.slice(1);
+    }).join(' ');
+
 }
 
 export function showAccount(accountId) {
   const account = bank.findAccount(accountId);
   let detail = document.querySelector('.bank-account-info')
   detail.style.display = "block";
-  document.querySelector('#account-name').innerHTML = account.name
+  document.querySelector('#account-name').innerHTML = capitalizeFirstLetter(account.name)
   document.querySelector('#account-number').innerHTML = account.id
   document.querySelector('#account-type').innerHTML = account.type
   document.querySelector('#account-balance').innerHTML = account.balance
@@ -58,10 +65,9 @@ export function showAccount(accountId) {
   let button = document.createElement("button");
   button.className = "deleteButton";
   button.id = account.id;
-  button.textContent = "Delete";
+  button.textContent = "Delete Acc";
 
   buttons.appendChild(button);
-
 }
 
 export function attachAccountListeners() {
@@ -83,8 +89,17 @@ export function attachAccountListeners() {
 
 export function deposit(accountid, amount) {
   const account = bank.findAccount(accountid);
-  account.deposit(amount);
-  console.log(account)
+  const success = document.querySelector(".success-alert");   
+  
+  if(account){
+    account.deposit(amount);
+    success.style.display = "block";
+    setTimeout(function () {
+      success.style.display = "none";
+    }, 5000);
+
+    return success
+  }
 }
 
 export function withdraw(accountid, amount) {
@@ -96,11 +111,28 @@ export function withdraw(accountid, amount) {
 export function transfer(senderid, recieverid, amount) {
   const account1 = bank.findAccount(senderid);
   const account2 = bank.findAccount(recieverid);
-  account1.withdraw(amount);
-  account2.deposit(amount);
+  let senderBalance = account1.balance
+  const error = document.querySelector(".error-alert");
+  const success = document.querySelector(".success-alert");   
+  
 
-  console.log(account1)
-  console.log(account2)
+  if(amount > senderBalance){
+    error.style.display = "block";
+      setTimeout(function () {
+        error.style.display = "none";
+      }, 5000);
+      return error
+  }else {
+    account1.withdraw(amount);
+    account2.deposit(amount);
+    success.style.display = "block";
+      setTimeout(function () {
+        success.style.display = "none";
+      }, 5000);
+
+      return success
+  }
+ 
 
 }
 
@@ -117,6 +149,8 @@ export function transfer(senderid, recieverid, amount) {
 
 
 // create account class
+const error = document.querySelector(".error-alert");
+const success = document.querySelector(".success-alert");
 export class Account {
   constructor(name, balance, type) {
     this.name = name;
@@ -135,9 +169,22 @@ export class Account {
     let initial = parseInt(this.balance);
     let withdrawal = parseInt(amount);
     this.balance = initial - withdrawal;
+   
 
     if (amount > this.balance) {
-      return "Insufficient funds";
+      error.style.display = "block";
+      setTimeout(function () {
+        error.style.display = "none";
+      }, 5000);
+      return error
+     
+    }else {
+      success.style.display = "block";
+      setTimeout(function () {
+        success.style.display = "none";
+      }, 5000);
+
+      return success
     }
     
   }
